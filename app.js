@@ -79,9 +79,20 @@ app.get("/blogs/:id/edit", function(req, res){
 		if(err){
 			console.log(err);
 		} else {
-		  res.redirect("/blogs/" + blog._id);
+		  	res.redirect("/blogs/" + blog._id);
 		}
 	});
+ });
+
+app.delete("/blogs/:id", function(req, res){
+	Blog.findByIdAndDelete(req.params.id, function(err, blog){
+		if(err){
+			console.log(err);
+			res.redirect("/blogs");
+		} else {
+			res.redirect("/blogs");
+		}
+	}); 
  });
 
 app.listen(3000, function() {
